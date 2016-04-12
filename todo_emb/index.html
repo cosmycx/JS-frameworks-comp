@@ -24,27 +24,26 @@
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-list-alt"></i>
           </span>
-          <input class="form-control" type="text" id="new-todo" placeholder="New Todo"> <!-- input value action -->
+          {{input class="form-control" type="text" id="new-todo" placeholder="New Todo" value=newTodo action="createNewTodo"}} <!-- input value action -->
           <span class="input-group-btn">
-            <button class="btn btn-success" type="button"> <!-- action createNewTodo -->
+            <button {{action "createNewTodo"}} class="btn btn-success" type="button"> <!-- action createNewTodo -->
               <i class="glyphicon glyphicon-plus"></i>
             </button>
           </span>
         </div>
         <!-- each -->
         {{#each itemController = "todo"}}
-        {{todo-entry val=val completed=completed}}
-        <!-- each -->
+        {{todo-entry val=val completed=completed remove="removeTodo"}}
         {{/each}}
+        <!-- each -->
 
         <div class="btn-clear-group">
-          <button class="btn btn-primary btn-clear">Clear Completed</button> <!-- action -->
+          <button {{action "clearCompleted"}} class="btn btn-primary btn-clear">Clear Completed</button> <!-- action -->
         </div>
       </div>
     </section>
   </script>
   <!-- /script -->
-
 
   <script type="text/x-handlebars" id="components/todo-entry">
   <!-- each -->
@@ -56,7 +55,7 @@
     {{input classNameBindings=":form-control completed:finished" value=val}} <!-- value classNameBindings -->
 
     <span class="input-group-btn">
-      <button class="btn btn-danger" type="button"> <!-- action -->
+      <button class="btn btn-danger" type="button" {{action "click"}}> <!-- action -->
         <i class="glyphicon glyphicon-remove"></i>
       </button>
     </span>
